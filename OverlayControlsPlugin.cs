@@ -28,6 +28,7 @@ namespace OverlayControlsPlugin
         public int boxHeight = 40;
         public int boxYpos = 200;
 
+        // Tis will contain the control rectangle in GDI coordinate system (0,0 - Control.Width, Control.Height)
         public System.Drawing.Rectangle boxGDIRect = new System.Drawing.Rectangle();
 
         public override void OnRender(IGraphics g)
@@ -81,7 +82,7 @@ namespace OverlayControlsPlugin
 
         private void FDGMapControl_MouseDown(object sender, MouseEventArgs e)
         {
-
+            //We have to use the mousedown coordinates to avoid user dragging the cursor to the control rectangle when moving map
             mouseX = e.X;
             mouseY = e.Y;
         }
