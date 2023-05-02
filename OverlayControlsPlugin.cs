@@ -19,11 +19,9 @@ using Microsoft.Win32;
 
 namespace OverlayControlsPlugin
 {
-
-
     public class myOverlay : GMapOverlay
     {
-        //Left and top aligned
+        // Left and top aligned
         public int boxWidth = 100;
         public int boxHeight = 40;
         public int boxYpos = 200;
@@ -37,18 +35,16 @@ namespace OverlayControlsPlugin
             //base.OnRender(g);
             g.DrawRectangle(new Pen(Color.Pink, 4), Control.Width / 2 - boxWidth, -(Control.Height / 2) + boxYpos, boxWidth, boxHeight);
             boxGDIRect = new System.Drawing.Rectangle(Control.Width - boxWidth, boxYpos, boxWidth, boxHeight);
-
         }
     }
 
     public class OverlayControlsPlugin : Plugin
     {
-
-
         internal static myOverlay mo;
         internal int mouseX;
         internal int mouseY;
 
+        #region Plugin info
         public override string Name
         {
             get { return "OverlayControlsPlugin"; }
@@ -63,12 +59,12 @@ namespace OverlayControlsPlugin
         {
             get { return "Add your name here"; }
         }
+        #endregion // Plugin info
 
         //[DebuggerHidden]
-        public override bool Init()
-		//Init called when the plugin dll is loaded
+        public override bool Init() // Init called when the plugin dll is loaded
         {
-            loopratehz = 1;  //Loop runs every second (The value is in Hertz, so 2 means every 500ms, 0.1f means every 10 second...) 
+            loopratehz = 1; // Loop runs every second (The value is in Hertz, so 2 means every 500ms, 0.1f means every 10 second...) 
 
             mo = new myOverlay();
             Host.FDGMapControl.Overlays.Add(mo);
@@ -77,24 +73,22 @@ namespace OverlayControlsPlugin
             Host.FDGMapControl.MouseDown += FDGMapControl_MouseDown;
             Host.FDGMapControl.MouseClick += FDGMapControl_MouseClick;
 
-            return true;	 // If it is false then plugin will not load
+            return true; // If it is false then plugin will not load
         }
 
         private void FDGMapControl_MouseDown(object sender, MouseEventArgs e)
         {
-            //We have to use the mousedown coordinates to avoid user dragging the cursor to the control rectangle when moving map
+            // We have to use the mousedown coordinates to avoid user dragging the cursor to the control rectangle when moving map
             mouseX = e.X;
             mouseY = e.Y;
         }
 
         private void FDGMapControl_MouseClick(object sender, MouseEventArgs e)
         {
+            Console.WriteLine("Mouse position {0} {1}", mouseX, mouseY);
+            Console.WriteLine("Rect Postion {0} {1}", mo.boxGDIRect.Left, mo.boxGDIRect.Top);
 
-                Console.WriteLine("Mouse position {0} {1}", mouseX, mouseY);
-                Console.WriteLine("Rect Postion {0} {1}", mo.boxGDIRect.Left, mo.boxGDIRect.Top);
-
-                if (mo.boxGDIRect.Contains(new Point(mouseX, mouseY))) Console.WriteLine("Box clicked !!!!");
-
+            if (mo.boxGDIRect.Contains(new Point(mouseX, mouseY))) Console.WriteLine("Box clicked !!!!");
         }
 
         private void FDGMapControl_OnMapZoomChanged()
@@ -102,22 +96,19 @@ namespace OverlayControlsPlugin
             Host.FDGMapControl.Position = Host.FDGMapControl.Position;
         }
 
-        public override bool Loaded()
-		//Loaded called after the plugin dll successfully loaded
+        public override bool Loaded() // Loaded called after the plugin dll successfully loaded
         {
-            return true;     //If it is false plugin will not start (loop will not called)
+            return true; // If it is false plugin will not start (loop will not called)
         }
 
-        public override bool Loop()
-		//Loop is called in regular intervalls (set by loopratehz)
+        public override bool Loop() // Loop is called in regular intervalls (set by loopratehz)
         {
-            return true;	//Return value is not used
+            return true; // Return value is not used
         }
 
-        public override bool Exit()
-		//Exit called when plugin is terminated (usually when Mission Planner is exiting)
+        public override bool Exit() // Exit called when plugin is terminated (usually when Mission Planner is exiting)
         {
-            return true;	//Return value is not used
+            return true; // Return value is not used
         }
     }
 }
