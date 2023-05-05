@@ -2,12 +2,10 @@
 
 A skeleton class library to create a <a href="https://github.com/ArduPilot/MissionPlanner/">Mission Planner</a> plugin.
 
-## Table of contents
 1. [Mission Planner Plugin Skeleton](#mission-planner-plugin-skeleton)
-   1. [Table of contents](#table-of-contents)
-   2. [How to add to Visual Studio (2019)](#how-to-add-to-visual-studio-2019)
-   3. [How to build](#how-to-build)
-   4. [How to develop](#how-to-develop)
+   1. [How to add to Visual Studio (2019)](#how-to-add-to-visual-studio-2019)
+   2. [How to build](#how-to-build)
+   3. [How to develop](#how-to-develop)
       1. [string Name, Version, Author](#string-name-version-author)
       2. [bool Init()](#bool-init)
       3. [bool Loaded()](#bool-loaded)
@@ -16,8 +14,6 @@ A skeleton class library to create a <a href="https://github.com/ArduPilot/Missi
       6. [Access main thread](#access-main-thread)
 
 ## How to add to Visual Studio (2019)
-
-> [Back to top](#table-of-contents)
 
 1. Create a new folder for your plugin in `<Mission Planner local repo folder>\Plugins\`  
     Example result URL: `C:\Users\<username>\Documents\GitHub\MissionPlanner\Plugins\MyPlugin\`
@@ -46,9 +42,9 @@ A skeleton class library to create a <a href="https://github.com/ArduPilot/Missi
    - Value under `Assembly name`
    - Value under `Default namespace`
 
-## How to build
+> [Back to top](#top)
 
-> [Back to top](#table-of-contents)
+## How to build
 
 Build the entire solution
 1. Click `Build` on the top menu strip
@@ -66,9 +62,9 @@ Result DLLs are by default saved to:
 
 File names will be whatever is set in Project Properties as the `Assembly name`.
 
-## How to develop
+> [Back to top](#top)
 
-> [Back to top](#table-of-contents)
+## How to develop
 
 The skeleton contains a selection of overrides from `MissionPlanner/Plugin/Plugin.cs`
 
@@ -125,7 +121,7 @@ In this example, `label1` is the `Name` property of Label "`timeLabel`", which i
 Access elements from the main thread like this:
 
  - `Host.MainForm`: Main form class (MainV2)
- - `Host.cs`: Current stats of the MAV (CurrentState)
+ - `Host.cs`: Current stats of the MAV (CurrentState) ([see CurrentState.md](CurrentState.md))
  - `Host.comPort`: Mavlink functions (MAVLinkInterface)
  - `Host.config`: XML settings (Settings)
  - `Host.FDGMapControl`: Map control in flightdata (myGMAP)
@@ -138,4 +134,4 @@ Access elements from the main thread like this:
  - `Host.FPMenuMapPosition`: Point where the context menu was drawn on FP map (PointLatLng)
  - `Host.FPDrawnPolygon`: Polygon drawn by the user on the FP page (GMapPolygon)
 
-> [Back to top](#table-of-contents)
+> [Back to top](#top)
