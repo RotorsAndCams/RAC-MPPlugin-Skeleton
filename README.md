@@ -109,14 +109,14 @@ This function is called when the plugin is unloaded.
 The plugin runs on a different thread than the main window (**MainV2**). Control elements can be accessed by dispatching your code to the thread where the main window is running:
 
 ```cs
-MainV2.instance.BeginInvoke((MethodInvoker)(() =>
+MainV2.instance.BeginInvoke((MethodInvoker)delegate
 {
     Label timeLabel = Host.MainForm.FlightData.Controls.Find("label1", true).FirstOrDefault() as Label;
     timeLabel.Text = DateTime.Now.ToLongTimeString();
-}));
+});
 ```
 
-In this example, `label1` is the `Name` property of Label "`timeLabel`", which is on the FlightData screen.
+In this example, `label1` is the `Name` property of Label "`timeLabel`", which is somewhere on the FlightData screen.
 
 Access elements from the main thread like this:
 
