@@ -3,7 +3,9 @@
 A skeleton class library to create a <a href="https://github.com/ArduPilot/MissionPlanner/">Mission Planner</a> plugin.
 
 1. [Mission Planner Plugin Skeleton](#mission-planner-plugin-skeleton)
-   1. [How to add to Visual Studio (2019)](#how-to-add-to-visual-studio-2019)
+   1. [How to add to Visual Studio](#how-to-add-to-visual-studio)
+      1. [Method 1: Create as new project](#method-1-create-as-new-project)
+      2. [Method 2: Copy this repo](#method-2-copy-this-repo)
    2. [How to build](#how-to-build)
    3. [How to develop](#how-to-develop)
       1. [string Name, Version, Author](#string-name-version-author)
@@ -13,7 +15,21 @@ A skeleton class library to create a <a href="https://github.com/ArduPilot/Missi
       5. [bool Exit()](#bool-exit)
       6. [Access main thread](#access-main-thread)
 
-## How to add to Visual Studio (2019)
+## How to add to Visual Studio
+
+### Method 1: Create as new project
+
+1. Create a new **Class library (.NET Framework)** project in the `MissionPlanner/Plugins` folder in the solution explorer view
+2. Change the **Output path** in the **Project properties/Build** page to `..\..\bin\Debug\net461\plugins\`
+3. Rename the generated `Class1.cs` in the solution explorer view
+4. Add `Plugin` parent class to the main class
+   - It should look like this: `public class YouClassName : Plugin`
+5. Implement the Plugin override functions (including `Loop()`)
+6. Return `true` by default in all overridden functions
+7. Set the value of `loopathertz` in `Init()`
+8. Fill out the plugin data in the overridden `Name`, `Version` and `Author` properties
+
+### Method 2: Copy this repo
 
 1. Create a new folder for your plugin in `<Mission Planner local repo folder>\Plugins\`  
     Example result URL: `C:\Users\<username>\Documents\GitHub\MissionPlanner\Plugins\MyPlugin\`
@@ -106,7 +122,7 @@ This function is called when the plugin is unloaded.
 
 ### Access main thread
 
-The plugin runs on a different thread than the main window (**MainV2**, exposed to plugins as **Host.MainForm**). Control elements can be accessed by dispatching your code to the thread where the main window is running:
+The plugin runs on a different thread than the main window (**MainV2**). Control elements can be accessed by dispatching your code to the thread where the main window is running:
 
 ```cs
 Host.MainForm.BeginInvoke((MethodInvoker)delegate
