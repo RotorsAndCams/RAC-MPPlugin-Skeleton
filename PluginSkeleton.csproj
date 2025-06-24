@@ -39,7 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="CurrentState.md" />
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(SolutionDir)ExtLibs\BaseClasses\BaseClasses.csproj">

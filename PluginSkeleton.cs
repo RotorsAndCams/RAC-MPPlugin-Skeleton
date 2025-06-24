@@ -58,7 +58,7 @@ namespace PluginSkeleton
         /// </summary>
         public override bool Loaded()
         {
-            MainV2.instance.BeginInvoke((MethodInvoker)delegate
+            Host.MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 // Setup tabpage
                 tabPage.Name = "tabTestTab";
@@ -129,7 +129,7 @@ namespace PluginSkeleton
 
         private void FlowPanel_Resize(object sender, EventArgs e)
         {
-            MainV2.instance.BeginInvoke((MethodInvoker)delegate
+            Host.MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 // Adjust control widths in flowPanel
                 foreach (Control item in flowPanel.Controls)
@@ -141,7 +141,7 @@ namespace PluginSkeleton
 
         private void TestButton_Click(object sender, EventArgs e)
         {
-            MainV2.instance.BeginInvoke((MethodInvoker)delegate
+            Host.MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 if (testTextBox.Lines.Length > 0) testTextBox.AppendText(Environment.NewLine);
                 testTextBox.AppendText($"{DateTime.Now} - Test button was pressed!");

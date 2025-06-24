@@ -106,10 +106,10 @@ This function is called when the plugin is unloaded.
 
 ### Access main thread
 
-The plugin runs on a different thread than the main window (**MainV2**). Control elements can be accessed by dispatching your code to the thread where the main window is running:
+The plugin runs on a different thread than the main window (**MainV2**, exposed to plugins as **Host.MainForm**). Control elements can be accessed by dispatching your code to the thread where the main window is running:
 
 ```cs
-MainV2.instance.BeginInvoke((MethodInvoker)delegate
+Host.MainForm.BeginInvoke((MethodInvoker)delegate
 {
     Label timeLabel = Host.MainForm.FlightData.Controls.Find("label1", true).FirstOrDefault() as Label;
     timeLabel.Text = DateTime.Now.ToLongTimeString();
