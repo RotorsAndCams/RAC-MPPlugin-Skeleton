@@ -23,7 +23,7 @@ A skeleton class library to create a <a href="https://github.com/ArduPilot/Missi
 2. Change the **Output path** in the **Project properties/Build** page to `..\..\bin\Debug\net461\plugins\`
 3. Rename the generated `Class1.cs` in the solution explorer view
 4. Add `Plugin` parent class to the main class
-   - It should look like this: `public class YouClassName : Plugin`
+   - It should look like this: `public class YourClassName : Plugin`
 5. Implement the Plugin override functions (including `Loop()`)
 6. Return `true` by default in all overridden functions
 7. Set the value of `loopathertz` in `Init()`
